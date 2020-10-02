@@ -36,14 +36,22 @@ const ETH_PRICE_QUERY = gql`
 `
 
 function App() {
-  
+  const { loading: ethLoading, data: ethPriceData } = useQuery(ETH_PRICE_QUERY)
+  const { loading: daiLoading, data: daiData } = useQuery(DAI_QUERY, {
+    variables: {
+      tokenAddress: '0x6b175474e89094c44da98b954eedeac495271d0f'
     }
+  });
+
+  const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
+  const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity
+  const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice
   
   return (
     <div>
       
     </div>
   );
-
+  }
 
 export default App
