@@ -49,7 +49,43 @@ function App() {
   
   return (
     <div>
-      
+      <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a
+          className="navbar-brand col-sm-3 col-md-2 mr-0"
+          href="benrozner.eth"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={uniswapLogo} width="30" height="30" className="d-inline-block align-top" alt="" />
+          &nbsp; Uniswap Explorer
+        </a>
+      </nav>
+      <div className="container-fluid mt-5">
+        <div className="row">
+          <main role="main" className="col-lg-12 d-flex text-center">
+            <div className="content mr-auto ml-auto">
+              <div>
+                <img src={daiLogo} width="150" height="150" className="mb-4" alt="" />
+                <h2>
+                  Dai price:{' '}
+                  {ethLoading || daiLoading
+                    ? 'Loading token data...'
+                    : '$' +
+                      // parse responses as floats and fix to 2 decimals
+                      (parseFloat(daiPriceInEth) * parseFloat(ethPriceInUSD)).toFixed(2)}
+                </h2>
+                <h2>
+                  Dai total liquidity:{' '}
+                  {daiLoading
+                    ? 'Loading token data...'
+                    : // display the total amount of DAI spread across all pools
+                      parseFloat(daiTotalLiquidity).toFixed(0)}
+                </h2>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
     </div>
   );
   }
