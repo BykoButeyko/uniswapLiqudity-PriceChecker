@@ -16,7 +16,24 @@ export const client = new ApolloClient({
     mode: 'no-cors'
   },
   cache: new InMemoryCache()
-})
+});
+
+const DAI_QUERY = gql`
+  query tokens($tokenAddress: Bytes!) {
+    tokens(where: { id: $tokenAddress }) {
+      derivedETH
+      totalLiquidity
+    }
+  }
+`
+
+const ETH_PRICE_QUERY = gql`
+  query bundles {
+    bundles(where: { id: "1" }) {
+      ethPrice
+    }
+  }
+`
 
 function App() {
   
