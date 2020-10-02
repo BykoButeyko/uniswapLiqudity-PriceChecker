@@ -8,6 +8,15 @@ import gql from 'graphql-tag'
 import uniswapLogo from '../uniswap-logo.png'
 import daiLogo from '../dai-logo.png'
 
+export const client = new ApolloClient({
+  link: new HttpLink({
+    uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
+  }),
+  fetchOptions: {
+    mode: 'no-cors'
+  },
+  cache: new InMemoryCache()
+})
 
 function App() {
   
